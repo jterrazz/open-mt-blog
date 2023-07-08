@@ -1,0 +1,23 @@
+app = "open-mt-blog"
+primary_region = "cdg"
+
+[build]
+  image = "ghost:latest"
+
+[http_service]
+  internal_port = 2368
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+
+[env]  
+  url = "https://blog.open.mt"  
+  database__client = "sqlite3"  
+  database__connection__filename = "content/data/ghost.db"  
+  database__useNullAsDefault = "true"  
+  database__debug = "false"
+  
+[mounts]
+  source="data"
+  destination="/var/lib/ghost/content"
